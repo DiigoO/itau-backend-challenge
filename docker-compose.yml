@@ -1,0 +1,13 @@
+version: '3'
+networks:
+  itau-code-challenges:
+    driver: bridge
+services:
+  itau-code-challenges:
+    build:
+      context: ./
+    image: itau-code-challenges:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - itau-code-challenges
