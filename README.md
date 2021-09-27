@@ -36,6 +36,14 @@ I also created a sandbox properties thinking that the service can run in more th
 Lastly the DOCKERFILE and dockercomposer;
 
 In every development a sonarlint plugin was used, thus ensuring that the code does not have any vulnerability, bug or condesmell;
+
+In my first refactor I changed from GET to POST a request that validates the password;
+Add a dto USER to receive the request body;
+In the controller a validation of the body;
+A UTIL package was created and in that package a public class that validates the passwods;
+No service now uses util to validate the password;
+A validator was created that also uses the util package to validate the password;
+Add logs;
 ```
 
 ## How To Execute

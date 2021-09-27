@@ -1,4 +1,4 @@
-package br.com.itau.backendchallenge.config;
+package br.com.itau.backendchallenge.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,5 +1,6 @@
 package br.com.itau.backendchallenge;
 
+import br.com.itau.backendchallenge.dto.User;
 import br.com.itau.backendchallenge.service.PasswordService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +21,25 @@ class PasswordServiceTests {
 
     @Test
     void passwordServiceTest() {
-        assertThat(passwordService.isValid("")).isFalse();
-        assertThat(passwordService.isValid("aa")).isFalse();
-        assertThat(passwordService.isValid("ab")).isFalse();
-        assertThat(passwordService.isValid("AAAbbbCc")).isFalse();
-        assertThat(passwordService.isValid("AbTp9!foo")).isFalse();
-        assertThat(passwordService.isValid("AbTp9!foA")).isFalse();
-        assertThat(passwordService.isValid("AbTp9 fok")).isFalse();
-        assertThat(passwordService.isValid("AbTp9!fok")).isTrue();
+
+        User user = new User();
+        user.setNickname("rodrigo");
+        user.setPassword("");
+        assertThat(passwordService.validUser(user)).isFalse();
+        user.setPassword("aa");
+        assertThat(passwordService.validUser(user)).isFalse();
+        user.setPassword("ab");
+        assertThat(passwordService.validUser(user)).isFalse();
+        user.setPassword("AAAbbbCc");
+        assertThat(passwordService.validUser(user)).isFalse();
+        user.setPassword("AbTp9!foo");
+        assertThat(passwordService.validUser(user)).isFalse();
+        user.setPassword("AbTp9!foA");
+        assertThat(passwordService.validUser(user)).isFalse();
+        user.setPassword("AbTp9 fok");
+        assertThat(passwordService.validUser(user)).isFalse();
+        user.setPassword("AbTp9!fok");
+        assertThat(passwordService.validUser(user)).isTrue();
     }
 
 }

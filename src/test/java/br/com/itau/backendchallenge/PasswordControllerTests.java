@@ -1,6 +1,7 @@
 package br.com.itau.backendchallenge;
 
 import br.com.itau.backendchallenge.controller.PasswordController;
+import br.com.itau.backendchallenge.dto.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,10 +35,13 @@ class PasswordControllerTests {
 
     @Test
     void password() {
-        assertThat(this.restTemplate.getForObject(String.format("http://localhost:%d/api/password/%s", port, "AbTp9 fok"),
+        User user = new User();
+        user.setNickname("digo");
+        user.setPassword("AbTp9 fok");
+        assertThat(this.restTemplate.postForObject(String.format("http://localhost:%d/api/password", port), user,
                 Boolean.class)).isFalse();
-
-        assertThat(this.restTemplate.getForObject(String.format("http://localhost:%d/api/password/%s", port, "AbTp9!fok"),
+        user.setPassword("AbTp9!fok");
+        assertThat(this.restTemplate.postForObject(String.format("http://localhost:%d/api/password", port), user,
                 Boolean.class)).isTrue();
     }
 
